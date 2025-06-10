@@ -11,9 +11,8 @@ export default function LoginPage() {
 
   function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    // Simulação: qualquer email/senha não vazios são aceitos
     if (email && senha) {
-      // Simula login e redireciona para a home
+      localStorage.setItem("auth", "true");
       router.push("/");
     } else {
       setErro("Preencha e-mail e senha.");
@@ -21,8 +20,8 @@ export default function LoginPage() {
   }
 
   return (
-    <main className={styles.loginMain}> {/* Assumindo que login.module.css define .loginMain */}
-      <form onSubmit={handleLogin} className={styles.loginForm}> {/* e .loginForm, etc. */}
+    <main className={styles.loginMain}>
+      <form onSubmit={handleLogin} className={styles.loginForm}>
         <h1 className={styles.loginTitle}>Login</h1>
         <label htmlFor="email" className={styles.loginLabel}>E-mail</label>
         <input
@@ -32,7 +31,6 @@ export default function LoginPage() {
           onChange={e => setEmail(e.target.value)}
           className={styles.loginInput}
           placeholder="Digite seu e-mail"
-          title="Digite seu e-mail"
         />
         <label htmlFor="senha" className={styles.loginLabel}>Senha</label>
         <input
@@ -42,10 +40,9 @@ export default function LoginPage() {
           onChange={e => setSenha(e.target.value)}
           className={styles.loginInput}
           placeholder="Digite sua senha"
-          title="Digite sua senha"
         />
-        {erro && <div className={styles.loginError}>{erro}</div>}
         <button type="submit" className={styles.loginButton}>Entrar</button>
+        {erro && <div className={styles.loginError}>{erro}</div>}
       </form>
     </main>
   );

@@ -10,16 +10,45 @@ import { perfumes as perfumesData } from "./produtos/[id]/perfumes"; // Importa 
 
 export default function Home() {
   const router = useRouter();
-  // Inicializa o estado 'produtos' com os dados dos perfumes locais.
-  // Renomeado para 'perfumesListados' para evitar confusão com a variável 'perfumesData' importada,
-  // ou podemos simplesmente usar 'perfumesData' diretamente no map se não houver intenção de modificá-lo.
-  // Para manter a estrutura com useState, usaremos 'perfumesListados'.
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [perfumesListados, setPerfumesListados] = useState(perfumesData);
   const [destaque, setDestaque] = useState<number | null>(null); // 'destaque' parece ser um índice. setDestaque() não é chamado.
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
 
-  // O useEffect para buscar dados da API externa foi removido.
+  useEffect(() => {
+    // Simples: verifica se existe "auth" no localStorage
+    if (typeof window !== "undefined") {
+      const auth = localStorage.getItem("auth");
+      if (!auth) {
+        router.push("/login");
+      } else {
+        setIsAuthenticated(true);
+      }
+    }
+  }, [router]);
 
   const produtoAtual = destaque !== null && perfumesListados[destaque] ? perfumesListados[destaque] : null;
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth");
+    router.push("/login");
+  };
+
+  function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    if (email && senha) {
+      localStorage.setItem("auth", "true"); // Salva autenticação
+      router.push("/"); // Redireciona para a home
+    } else {
+      setErro("Preencha e-mail e senha.");
+    }
+  }
+
+  if (!isAuthenticated) {
+    return null; // Ou um loading...
+  }
 
   return (
     <div className={styles.catalogWrapper}>
@@ -27,7 +56,7 @@ export default function Home() {
         <div className={styles.headerBrand}>
           <h1>MCosmeticos</h1>
         </div>
-        <button className={styles.authBtn}>Perfil</button>
+        <button className={styles.authBtn} onClick={handleLogout}>Perfil</button>
       </header>
       <section className={styles.hero}>
         <div className={styles.heroBg}>
