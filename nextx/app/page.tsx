@@ -71,10 +71,15 @@ export default function Home() {
           descricao: product.description,
         }));
         setPerfumesListados(perfumesFormatados);
-      } catch (e: any) {
+      // ...
+    } catch (e: unknown) { // <-- LINHA CORRIGIDA
+      if (e instanceof Error) {
         setError(e.message);
-        console.error("Falha ao buscar perfumes:", e);
-      } finally {
+      } else {
+        setError("Ocorreu um erro desconhecido");
+      }
+      console.error("Falha ao buscar perfumes:", e);
+    } finally {
         setIsLoading(false);
       }
     }

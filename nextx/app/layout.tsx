@@ -1,8 +1,7 @@
+// app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { Providers } from "./providers";
-
+import { Geist, Geist_Mono } from "next/font/google"; // Supondo que você use next/font/google
+import "./globals.css"; // Garanta que seu arquivo de CSS global está importado
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,27 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Catálogo de Perfumes | MCosmeticos",
-  description: "Catálogo moderno de perfumes com Next.js, Tailwind e NextUI.",
-  icons: {
-    icon: "/favicon.ico",
-  },
-  openGraph: {
-    title: "Catálogo de Perfumes | MCosmeticos",
-    description: "Catálogo moderno de perfumes com Next.js, Tailwind e NextUI.",
-    url: "https://seusite.com/",
-    siteName: "MCosmeticos",
-    images: [
-      {
-        url: "/fundo.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Banner MCosmeticos",
-      },
-    ],
-    locale: "pt_BR",
-    type: "website",
-  },
+  title: "Catálogo de Perfumes",
+  description: "Seu catálogo de perfumes.",
 };
 
 export default function RootLayout({
@@ -44,7 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    // Aplicando as variáveis da fonte na tag <html> ou <body>
+    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>{children}</body>
     </html>
   );
