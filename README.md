@@ -10,6 +10,10 @@ Esta é uma aplicação web para visualização de um catálogo de perfumes. Os 
 - NextUI (ou componentes estilizados que se assemelham ao HeroUI, dado o uso de `bg-background`, `text-foreground`)
 
 ## Como rodar
-npm install
+npm install  
 npm run dev
+
+## Links
+- [Deploy na Vercel](https://catalogo-de-perfumes-nu.vercel.app/)
+- [Repositório GitHub]( https://github.com/MikaelNDN/Catalogo-De-Perfumes.git)
 
