@@ -9,6 +9,10 @@ Esta é uma aplicação web para visualização de um catálogo de perfumes. Os 
 - Tailwind CSS
 - NextUI (ou componentes estilizados que se assemelham ao HeroUI, dado o uso de `bg-background`, `text-foreground`)
 
+## Links
+- [Deploy na Vercel](https://catalogo-de-perfumes-nu.vercel.app/)
+- [Repositório GitHub]( https://github.com/MikaelNDN/Catalogo-De-Perfumes.git)
+
 ## Como rodar
 ```bash
 npm install
