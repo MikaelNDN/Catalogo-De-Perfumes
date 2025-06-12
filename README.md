@@ -13,7 +13,3 @@ Esta é uma aplicação web para visualização de um catálogo de perfumes. Os 
 ```bash
 npm install
 npm run dev
-
-## Links
-Deploy na Vercel
-Repositório GitHub
